@@ -1,36 +1,34 @@
 import { createTheme } from '@mui/material/styles';
 import { dark } from '@mui/material/styles/createPalette';
 
-export const theme = () => {
-    return createTheme({
-        direction: 'rtl',
-        typography :{
-            fontFamily : "Vazir , Roboto"
-        },  
-        palette: {
-            primary: {
-                main: "#3ECBE9",
-                light: "#128FC8",
-                dark : "#00468B",
+export const getTheme = (mode:"dark" | "light") => {
+        return createTheme({
+            typography: {
+                fontFamily: "Vazir , Roboto"
             },
-            secondary: {
-                main: "#FFE45C"
+            palette: {
+                mode,
+                primary: {
+                    main: "#282a36",
+                },
+                secondary: {
+                    main: "#bd93f9",
+                    light: "#ff79c6"
+                },
+                success: {
+                    main: "#50fa7b"
+                },
+ 
+                error: {
+                    main: "#ff5555"
+                },
+                warning: {
+                    main: "#ffb86c"
+                },
+                text: {
+                    primary: "#f8f8f2"
+                }
             },
-            success: {
-                main: "#20D489"
-            },
-            grey : {
-                "100" : "#757575"
-            },
-            error : {
-                main : "#e63946"
-            },
-            warning : {
-                main : "#ffcc00"
-            },
-            text: {
-                primary: "#3A354D"
-            }
-        },
-    });
+
+        });
 }

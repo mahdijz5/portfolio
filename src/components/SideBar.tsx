@@ -1,28 +1,28 @@
 import { Player } from '@lottiefiles/react-lottie-player';
-import {Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
-import React, {useRef, } from 'react'
+import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import React, { useRef, } from 'react'
 
 interface SideBarProps {
-    openDrawer:boolean,
+    openDrawer: boolean,
     setOpenDrawer: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const listItem = [
     {
-        label  : "Home",
-        icon : "home",
+        label: "Home",
+        icon: "homeDark",
     },
     {
-        label  : "About me",
-        icon : "avatar",
+        label: "About me",
+        icon: "avatarDark",
     },
     {
         label: "Expertise",
-        icon: "skills",
+        icon: "skillsDark",
     },
     {
         label: "Contact me",
-        icon: "contactMe",
+        icon: "contactMeDark",
     }
 ]
 
@@ -32,23 +32,23 @@ const iconStyles = {
 
 const Sidebar = ({ openDrawer, setOpenDrawer }: SideBarProps) => {
     const icons = useRef<Player[]>([])
-    
+
     const closeDrawer = () => (event: React.KeyboardEvent | React.MouseEvent) => {
         setOpenDrawer(false);
-        listItem.map((item,index) => {
+        listItem.map((item, index) => {
             icons.current[index].stop()
         })
     };
-    
-  
-    const addIcon = (element : Player) => {
+
+
+    const addIcon = (element: Player) => {
         icons.current.push(element);
     };
 
-    const changeStatusOfIcon = (index : number,order : "play" | "stop")   => {
-        if(order == "play") {
+    const changeStatusOfIcon = (index: number, order: "play" | "stop") => {
+        if (order == "play") {
             icons.current[index].play()
-        }else {
+        } else {
             icons.current[index].stop()
         }
     }
@@ -62,22 +62,29 @@ const Sidebar = ({ openDrawer, setOpenDrawer }: SideBarProps) => {
                 onClose={closeDrawer()}
             >
 
-                <List disablePadding>
-                    {listItem.map((item,index) => (
-                        <ListItem sx={{padding : 0}}  key={index} 
+                <List disablePadding sx={{backgroundColor:"primary.dark" , height : "100%"}}>
+                    <ListItem sx={{ padding: "10px" }}  >
+                        <img src="/src/assets/images/profile.png" style={{
+                            width : "220px",
+                            height : "220px",
+                        }}/>
+                    </ListItem>
+                    {listItem.map((item, index) => (
+                        <ListItem sx={{ padding: 0 }} key={index}
                             onMouseOver={() => {
                                 changeStatusOfIcon(index, "play")
                             }}
-                            >
+                            onClick={closeDrawer()}
+                        >
                             <ListItemButton sx={{ padding: "25px 35px" }}  >
                                 <ListItemIcon>
-                                    <Player
+                                    <Player                                    
                                         src={`/src/assets/lottie/${item.icon}.json`}
                                         style={iconStyles}
                                         keepLastFrame
                                         ref={addIcon}
                                         onEvent={(event) => {
-                                            if (event == "complete"  ){
+                                            if (event == "complete") {
                                                 changeStatusOfIcon(index, "stop")
                                             }
                                         }}
@@ -87,6 +94,7 @@ const Sidebar = ({ openDrawer, setOpenDrawer }: SideBarProps) => {
                             </ListItemButton>
                         </ListItem>
                     ))}
+
                 </List>
             </Drawer>
         </>

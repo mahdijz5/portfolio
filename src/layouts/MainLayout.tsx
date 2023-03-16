@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import {  ThemeProvider } from '@mui/material';
+import { getTheme } from '../configs/theme';
 
 interface LayoutProps {
-    children: typeof React.Children | JSX.Element;
+    children:  JSX.Element;
 }
 
-const MainLayout = (props: LayoutProps) => {
 
+const MainLayout = (props: LayoutProps) => {
     return (
-            <>
+        <ThemeProvider theme={getTheme("dark")}>
                 {props.children}
-            </>
+        </ThemeProvider>
     );
 };
 
