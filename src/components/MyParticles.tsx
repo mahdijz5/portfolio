@@ -3,7 +3,7 @@ import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import { Container, Engine } from 'tsparticles-engine';
 
-const HomeParticles = () => {
+const MyParticles = () => {
     const particlesInit = useCallback(async (engine: Engine) => {
         await loadFull(engine);
     }, []);
@@ -13,6 +13,9 @@ const HomeParticles = () => {
     return (
         <>
             <Particles
+            style={{
+                    height: "100px",
+            }}
                 id="tsparticles"
                 init={particlesInit}
                 loaded={particlesLoaded}
@@ -84,4 +87,4 @@ const HomeParticles = () => {
     )
 }
 
-export default HomeParticles;
+export default MyParticles;

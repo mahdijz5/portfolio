@@ -11,18 +11,22 @@ const listItem = [
     {
         label: "Home",
         icon: "homeDark",
+        pushTo : "home"  
     },
     {
         label: "About me",
         icon: "avatarDark",
+        pushTo: "aboutMe"
     },
     {
         label: "Expertise",
         icon: "skillsDark",
+        pushTo: "expertise"
     },
     {
-        label: "Contact me",
-        icon: "contactMeDark",
+        label: "Work samples",
+        icon: "workSamplesDark",
+        pushTo: "workSamples"
     }
 ]
 
@@ -35,9 +39,6 @@ const Sidebar = ({ openDrawer, setOpenDrawer }: SideBarProps) => {
 
     const closeDrawer = () => (event: React.KeyboardEvent | React.MouseEvent) => {
         setOpenDrawer(false);
-        listItem.map((item, index) => {
-            icons.current[index].stop()
-        })
     };
 
 
@@ -76,22 +77,24 @@ const Sidebar = ({ openDrawer, setOpenDrawer }: SideBarProps) => {
                             }}
                             onClick={closeDrawer()}
                         >
-                            <ListItemButton sx={{ padding: "25px 35px" }}  >
-                                <ListItemIcon>
-                                    <Player                                    
-                                        src={`/src/assets/lottie/${item.icon}.json`}
-                                        style={iconStyles}
-                                        keepLastFrame
-                                        ref={addIcon}
-                                        onEvent={(event) => {
-                                            if (event == "complete") {
-                                                changeStatusOfIcon(index, "stop")
-                                            }
-                                        }}
-                                    />
-                                </ListItemIcon>
-                                <ListItemText primary={item.label} />
-                            </ListItemButton>
+                            <a href={`${location.pathname}#${item.pushTo}`} style={{ textDecoration: "none",color:"unset" }}>
+                                <ListItemButton sx={{ padding: "25px 35px" }}  >
+                                    <ListItemIcon>
+                                        <Player
+                                            src={`/src/assets/lottie/${item.icon}.json`}
+                                            style={iconStyles}
+                                            keepLastFrame
+                                            ref={addIcon}
+                                            onEvent={(event) => {
+                                                if (event == "complete") {
+                                                    changeStatusOfIcon(index, "stop")
+                                                }
+                                            }}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText  primary={item.label} />
+                                </ListItemButton>
+                            </a>
                         </ListItem>
                     ))}
 

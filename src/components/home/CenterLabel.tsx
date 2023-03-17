@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { RandomReveal } from "react-random-reveal";
 import TextTransition, { presets } from "react-text-transition";
+import CenterBox from "../CenterBox";
 
 const TEXTS = [
     "Javascript",
@@ -11,17 +12,7 @@ const TEXTS = [
     "Fullstack",
 ];
 
-const CenterBox = styled(Box)(({ theme }) => ({
-    margin: 0,
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width : "600px",
-    textAlign : "center"
-}))
-
-
+ 
 const CenterLabel = () => {
     const [index, setIndex] =useState(0);
 
@@ -35,17 +26,19 @@ const CenterLabel = () => {
 
     return (
         <>
-            <CenterBox >
-                <Typography fontSize="50px" color="text.primary">
-                    {"{"}
-                    <RandomReveal isPlaying revealEasing='linear' duration={5} characters="I'm Mahdi Javidi" />
-                    {"}"}
-                </Typography>
-                <Typography color="text.primary"  fontSize="30px" variant="subtitle2">
+            <CenterBox>
+                <Box sx={{ width: "600px" }}>
+                    <Typography fontSize="50px" color="text.primary">
+                        {"{"}
+                        <RandomReveal isPlaying revealEasing='linear' duration={3} characters="I'm Mahdi Javidi" />
+                        {"}"}
+                    </Typography>
+                    <Typography color="text.primary" fontSize="30px" variant="subtitle2">
                    // <TextTransition springConfig={presets.wobbly} inline>
-                        {TEXTS[index % TEXTS.length]}
-                    </TextTransition> developer
-                </Typography>
+                            {TEXTS[index % TEXTS.length]}
+                        </TextTransition> developer
+                    </Typography>
+            </Box>
             </CenterBox>
         </>
     )

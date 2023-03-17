@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Triakis";
+  src: url("/src/assets/fonts/Triakis.woff2") format("woff2"),
+      url("/src/assets/fonts/Triakis.woff") format("woff"),
+      url("/src/assets/fonts/Triakis.eot") format("eot"),
+      url("/src/assets/fonts/Triakis.ttf") format("ttf");
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+}
+
+@font-face {
+  font-family: "END";
+  src: url("/src/assets/fonts/EduNSWACTFoundation.woff") format("woff"),
+      url("/src/assets/fonts/EduNSWACTFoundation.ttf") format("ttf");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+}
