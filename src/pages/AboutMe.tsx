@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Box, Card, CardContent, CardMedia, Fade, IconButton, Slide, Stack, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Fade, IconButton, Slide, Stack, Typography, Zoom } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import CenterBox from "../components/CenterBox";
 import MyParticles from "../components/MyParticles";
@@ -56,7 +56,7 @@ const AboutMe = () =>  {
         <>
             <StyledBox ref={aboutMeRef}>
                 <CenterBox>
-                    <Fade  in={show}  mountOnEnter unmountOnExit>
+                    <Zoom  in={show}  mountOnEnter unmountOnExit>
                         <StyledCard  >
                             <StyledCardMedia
                                 component="img"
@@ -76,7 +76,7 @@ const AboutMe = () =>  {
                                 </CardContent>
                             </Box>
                         </StyledCard>
-                    </Fade>
+                    </Zoom>
                 </CenterBox>
         </StyledBox>
         </>

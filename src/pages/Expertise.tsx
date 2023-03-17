@@ -1,12 +1,12 @@
 import { styled } from "@mui/material/styles";
-import { Box, LinearProgress, LinearProgressProps, Tooltip, Typography, Zoom } from "@mui/material";
+import { Box, LinearProgress, LinearProgressProps, Slide, Tooltip, Typography, Zoom } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { Stack } from "@mui/system";
 
 interface skillInterface {
-    icon : string,
+    icon: string,
     color: "success" | "inherit" | "primary" | "secondary" | "error" | "info" | "warning",
-    value : number
+    value: number
 }
 
 const StyledBox = styled(Box)(({ theme }) => ({
@@ -16,6 +16,17 @@ const StyledBox = styled(Box)(({ theme }) => ({
 
 
 function LinearProgressWithLabel(props: LinearProgressProps & { value: number, icon: string }) {
+    const [getValue, setValue] = useState(1)
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setValue((prevProgress) => (prevProgress >= props.value ? props.value : prevProgress + 5));
+        }, 100);
+        return () => {
+            clearInterval(timer);
+        };
+    }, [])
+
     return (
         <>
             <Tooltip title={props.icon} placement="right-start" color="primary" TransitionComponent={Zoom}
@@ -24,11 +35,11 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number, i
             </Tooltip>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ width: '100%', mr: 1 }}>
-                    <LinearProgress variant="determinate"   {...props} />
+                    <LinearProgress variant="determinate"   {...props} value={getValue} />
                 </Box>
                 <Box sx={{ minWidth: 35 }}>
                     <Typography variant="body2" color="text.secondary">{`${Math.round(
-                        props.value,
+                        getValue
                     )}%`}</Typography>
                 </Box>
             </Box>
@@ -94,7 +105,7 @@ const Expertise = () => {
             if (entries[0].isIntersecting) {
                 animationDelay = setTimeout(() => {
                     setShow(true)
-                }, 500)
+                }, 700)
             } else {
                 clearTimeout(animationDelay)
                 setShow(false)
@@ -111,9 +122,11 @@ const Expertise = () => {
             <StyledBox ref={expertiseRef}>
                 <Stack direction="row" flexWrap="wrap" padding="90px" rowGap="30px">
                     {skills.map((skill, index) => (
-                        <Box width="45%" key={index} color="white" paddingX="20px">
-                            <LinearProgressWithLabel color={skill.color} sx={{ height: "10px", borderRadius: "10px" }} value={skill.value} icon={skill.icon} />
-                        </Box>
+                        <Slide direction="right" in={show} timeout={(index + 1) * 100} key={index}>
+                            <Box width="45%" color="white" paddingX="20px">
+                                <LinearProgressWithLabel color={skill.color} sx={{ height: "10px", borderRadius: "10px" }} value={skill.value} icon={skill.icon} />
+                            </Box>
+                        </Slide>
                     ))}
                 </Stack>
             </StyledBox>

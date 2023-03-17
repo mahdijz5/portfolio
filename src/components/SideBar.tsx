@@ -34,8 +34,8 @@ const iconStyles = {
     height: "40px",
 }
 
-const Sidebar = ({ openDrawer, setOpenDrawer }: SideBarProps) => {
-    const icons = useRef<Player[]>([])
+    const Sidebar = ({ openDrawer, setOpenDrawer }: SideBarProps) => {
+        const icons = useRef<Player[]>([])
 
     const closeDrawer = () => (event: React.KeyboardEvent | React.MouseEvent) => {
         setOpenDrawer(false);
@@ -77,7 +77,7 @@ const Sidebar = ({ openDrawer, setOpenDrawer }: SideBarProps) => {
                             }}
                             onClick={closeDrawer()}
                         >
-                            <a href={`${location.pathname}#${item.pushTo}`} style={{ textDecoration: "none",color:"unset" }}>
+                            <a href={`${location.pathname}#${item.pushTo}`} style={{ textDecoration: "none",color:"unset" ,display:"block",width:"100%"}}>
                                 <ListItemButton sx={{ padding: "25px 35px" }}  >
                                     <ListItemIcon>
                                         <Player
