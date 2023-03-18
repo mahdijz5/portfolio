@@ -30,7 +30,7 @@ const CenterLabel = () => {
                 <Box sx={{ width: "600px" }}>
                     <Typography fontSize="50px" color="text.primary">
                         {"{"}
-                        <RandomReveal isPlaying revealEasing='linear' duration={3} characters="I'm Mahdi Javidi" />
+                        <RandomReveal isPlaying revealEasing='linear' duration={5} characters="I'm Mahdi Javidi" />
                         {"}"}
                     </Typography>
                     <Typography color="text.primary" fontSize="30px" variant="subtitle2">

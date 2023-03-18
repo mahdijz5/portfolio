@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Box, LinearProgress, LinearProgressProps, Slide, Tooltip, Typography, Zoom } from "@mui/material";
+import { Box, Divider, LinearProgress, LinearProgressProps, Slide, Tooltip, Typography, Zoom } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { Stack } from "@mui/system";
 
@@ -100,7 +100,7 @@ const Expertise = () => {
     const [show, setShow] = useState(false)
     const expertiseRef = useRef<Element>()
     useEffect(() => {
-        let animationDelay: number
+        let animationDelay: NodeJS.Timeout
         const observer = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
                 animationDelay = setTimeout(() => {
@@ -120,6 +120,11 @@ const Expertise = () => {
     return (
         <>
             <StyledBox ref={expertiseRef}>
+                <Slide direction="right" in={show} timeout={200}>
+                    <Box marginTop="100px" paddingX="100px">
+                        <Divider ><Typography  variant="h2" color="text.primary">My expertises</Typography></Divider>
+                    </Box>
+                </Slide>
                 <Stack direction="row" flexWrap="wrap" padding="90px" rowGap="30px">
                     {skills.map((skill, index) => (
                         <Slide direction="right" in={show} timeout={(index + 1) * 100} key={index}>
